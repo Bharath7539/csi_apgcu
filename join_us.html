@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join CSI Student Branch</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Enhanced Alert Styles */
+        .alert {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            color: #fff;
+            background-color: #4CAF50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            animation: slideIn 0.3s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .alert.error {
+            background-color: #f44336;
+        }
+
+        .alert.warning {
+            background-color: #ff9800;
+        }
+
+        /* Form Section Styles */
+        .form-section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Form Group Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Input Styles */
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/csi-au.png" alt="CSI AU Logo" class="logo" style="max-width: 100px; height: auto; margin: auto;">
+        <h1 style="text-align: center; background-color: #5563ce; color: white; padding: 1px;; border-radius: 1px;">Join CSI Student Branch</h1>
+    </header>
+    <main>
+        <div class="membership-form">
+            <p id="para" style="font-size: 20px; color: #5eca82; text-align: center; margin: 2rem 0;">
+                Become a part of our vibrant community of technology enthusiasts!
+            </p>
+            <form id="csiMembershipForm" onsubmit="handleFormSubmit(event)">
+                <!-- Form sections remain the same -->
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required
+                               pattern="[A-Za-z\s]{2,50}"
+                               title="Please enter your full name (letters only)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required
+                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                               title="Please enter a valid college email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rollno">Roll Number *</label>
+                        <input type="text" id="rollno" name="rollno" required>
+                               
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <select id="department" name="department" required>
+                            <option value="">Select Department</option>
+                            <option value="mca">MCA</option>
+                            <option value="mba">MBA</option>
+                           
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Academic Information -->
+                <div class="form-section">
+                    <h3>Academic Information</h3>
+                    <div class="form-group">
+                        <label for="year">Year of Study *</label>
+                        <select id="year" name="year" required>
+                            <option value="">Select Year</option>
+                            <option value="1">First Year</option>
+                            <option value="2">Second Year</option>
+                            
+                        </select>
+                    </div>
+                    
+                    
+                </div>
+        
+                <!-- Interests & Skills -->
+                <div class="form-section">
+                    <h3>Technical Interests & Skills</h3>
+                    <div class="form-group">
+                        <label>Areas of Interest</label>
+                        <div class="textarea">
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="skills">Technical Skills</label>
+                        <textarea id="skills" name="skills" rows="3" 
+                                  placeholder="List your programming languages and technical skills"></textarea>
+                    </div>
+                </div>
+        
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3>Additional Information</h3>
+                    <div class="form-group">
+                        <label for="experience">Previous CSI Experience</label>
+                        <textarea id="experience" name="experience" rows="3" 
+                                  placeholder="Share any previous experience with CSI or similar organizations"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="why-join">Why do you want to join CSI? *</label>
+                        <textarea id="why-join" name="why-join" rows="3" required
+                                  placeholder="Explain your motivation for joining CSI"></textarea>
+                    </div>
+                </div>
+        
+                <!-- Submit Section -->
+                <div class="form-section submit-section">
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="terms" required>I agree to the CSI membership terms and conditions
+                        </label>
+                    </div>
+                    <div id="successMessage" class="alert">Congratulations! Your form has been submitted. Our team will update you regarding your joining status.</div>
+                    <button type="submit" class="btn primary">Submit Application</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p style="text-align: center; padding: 2rem; background: #f8f9fa; border-radius: 10px;">© 2023 CSI Student Branch</p>
+    </footer>
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Show success message with animation
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            successMessage.style.opacity = '0';
+            successMessage.style.transform = 'translateY(-20px)';
+            
+            // Animate message
+            requestAnimationFrame(() => {
+                successMessage.style.transition = 'all 0.3s ease-out';
+                successMessage.style.opacity = '1';
+                successMessage.style.transform = 'translateY(0)';
+            });
+            
+            // Reset form after delay
+            setTimeout(() => {
+                document.getElementById('csiMembershipForm').reset();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

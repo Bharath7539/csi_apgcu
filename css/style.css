@@ -74,12 +74,12 @@ nav a:hover::after {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, #1a237e 0%, #303f9f 100%);
     display: flex;
     align-items: center;
     color: #fff;
+    text-align: center;
+    padding: 0 20px;
 }
 
 .hero-content {
@@ -210,8 +210,16 @@ nav a:hover::after {
     nav {
         display: none;
         flex-direction: column;
-        padding: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #1a237e;
+        z-index: 1000;
+        padding: 1rem 0;
         opacity: 1;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
     nav.active {

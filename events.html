@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-carousel {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            width: 100%;
+            bottom: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .control-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .control-dot.active {
+            background: #007bff;
+            transform: scale(1.2);
+        }
+
+        .event-details {
+            padding: 20px;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .event-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upcoming Events</h1>
+        
+        <div class="events-grid">
+            <!-- Event Card 1 -->
+            <article class="event-card">
+                <div class="event-carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=1" alt="Event 1 Photo 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=2" alt="Event 1 Photo 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=3" alt="Event 1 Photo 3">
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <span class="control-dot active"></span>
+                        <span class="control-dot"></span>
+                        <span class="control-dot"></span>
+                    </div>
+                </div>
+                
+                <div class="event-details">
+                    <h2 class="event-title">Summer Music Festival</h2>
+                    <p class="event-description">
+                        Join us for an unforgettable night of music under the stars! 
+                        Featuring performances by renowned artists and emerging talents.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Event Card 2 -->
+            <article class="event-card">
+                <div class="event-carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=4" alt="Event 2 Photo 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=5" alt="Event 2 Photo 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://picsum.photos/500/300?random=6" alt="Event 2 Photo 3">
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <span class="control-dot active"></span>
+                        <span class="control-dot"></span>
+                        <span class="control-dot"></span>
+                    </div>
+                </div>
+                
+                <div class="event-details">
+                    <h2 class="event-title">Art Exhibition Opening</h2>
+                    <p class="event-description">
+                        Experience the latest works from contemporary artists 
+                        at our gallery opening. Meet the creators and enjoy refreshments.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousels = document.querySelectorAll('.carousel-inner');
+            
+            carousels.forEach(carousel => {
+                const items = carousel.children.length;
+                let currentIndex = 0;
+
+                // Set up dots
+                const dotContainer = carousel.parentElement.querySelector('.carousel-controls');
+                const dots = dotContainer.children;
+
+                // Auto-slide
+                setInterval(() => {
+                    currentIndex = (currentIndex + 1) % items;
+                    updateCarousel();
+                }, 3000);
+
+                // Update carousel position and dots
+                function updateCarousel() {
+                    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    Array.from(dots).forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                // Click dots to navigate
+                Array.from(dots).forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+
+                // Initialize carousel
+                updateCarousel();
+            });
+        });
+    </script>
+</body>
+</html>
